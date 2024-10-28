@@ -1,0 +1,55 @@
+/*Autor: Charlotte Fehlhauer*/
+.notification-stack {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1001;
+}
+
+.notification {
+  display: block;
+  align-items: center;
+  position: relative;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1);
+  color: var(--info);
+  min-width: 250px;
+  max-width: 500px;
+  word-wrap: break-word;
+}
+
+p{
+  font-size: 20px;
+  margin: 5px
+}
+.bi-x-circle{
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+}
+
+.bi-exclamation-circle-fill, .bi-check-circle-fill{
+  margin: 10px;
+  align-items: baseline;
+}
+
+.bi-exclamation-circle-fill {
+  fill: var(--danger);
+}
+
+.bi-check-circle-fill {
+  fill: var(--success);
+}
+
+@media (max-width: 600px) {
+  .notification {
+    width: 300px;
+  }
+}

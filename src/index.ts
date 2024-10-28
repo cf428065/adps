@@ -1,0 +1,21 @@
+import './polyfills.js';
+import './components/app/app.js';
+import './components/pages/frontpage/frontpage.js';
+import './components/pages/all-habits/all-habits.js';
+import './components/pages/sign-in/sign-in.js';
+import './components/pages/sign-up/sign-up.js';
+import './components/pages/sign-out/sign-out.js';
+import './components/pages/journal/journal.js';
+import './components/pages/create-habit/create-habit.js';
+import './components/pages/create-entry/create-entry.js';
+import './components/pages/suggestion/suggestion.js';
+
+import './components/widgets/notification-stack/notification-stack.js';
+import './components/widgets/navigation/navigation.js';
+import './components/widgets/toggle/toggle.js';
+import './components/widgets/journal-popup/journal-popup.js';
+import './components/widgets/journal-entry/journal-entry.js';
+import './components/widgets/box/box.js';
+import './components/widgets/editPopUp/editPopUp.js';
+import './components/widgets/moodtracker/moodtracker.js';
+import './components/widgets/piechart/piechart.js';
