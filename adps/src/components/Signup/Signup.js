@@ -68,17 +68,6 @@ function Signup() {
     
   };
 
-  /* code gives Rendering mistakes
-  useEffect(() => {
-    if (role === "restaurant") {
-      document.getElementById("restaurantForm").style.display = "block";
-      document.getElementById("clientForm").style.display = "none";
-    } else if (role === "client") {
-      document.getElementById("clientForm").style.display = "block";
-      document.getElementById("restaurantForm").style.display = "none";
-    }
-  });*/
-
   return (
     /*--default page (no form)--*/
     <div id="signupDefault">

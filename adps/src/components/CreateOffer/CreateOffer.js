@@ -9,14 +9,14 @@ function CreateOffer() {
     const httpClient = useHttpClient();
 
     const [name, setName] = useState("");
-    const [boxType, setBoxType] = useState([]);  //needs to be implemented
-    const [picture, setPicture] = useState([]); //needs to be implemented
+    const [boxType, setBoxType] = useState([]);  
+    const [picture, setPicture] = useState([]); 
     const [quantity, setQuantity] = useState("");
     const [price, setPrice] = useState("");
-    const [id, setId] = useState(""); //I Don't think we need that since i get it in createrOffer()-method 
+    const [id] = useState(httpClient.get("/auth/me").id); 
+  
 async function createOffer(e) {
     e.preventDefault();
-    const id = httpClient.get("/auth/me").json().id;
     const data = {
       restaurant_id: id,
       name: name,

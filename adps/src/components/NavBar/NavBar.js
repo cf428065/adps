@@ -1,37 +1,49 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import './NavBar.css'
 import { useHttpClient } from '../../httpClient/HttpClientContext';
 function NavBar() {
-    //Context-object
-    const httpClient = useHttpClient();
-    const id = httpClient.get(`/me`).id;
+     // Context object
+  const httpClient = useHttpClient();
+  const idRef = useRef(0); // Using useRef to keep id mutable across renders
 
+  useEffect(() => {
+    if (sessionStorage.getItem('authToken')) {
+        idRef.current = httpClient.getAuth('/auth/me').id; // Update the idRef's current value
+      };}, [httpClient]);
 
-    function logout(){
-/* implement logout here (destroy the authtoken and reload the page) */ 
-}
+  function logout(){
+    sessionStorage.removeItem('authToken');
+    idRef.current = 0;
+  }
   return (
     <ul id='navbar'>
-<li><a href='/'>Home</a> </li>
-<li><a href='/login'>Login</a></li>
-<li><a href='/signup'>Signup</a></li>
+    <li><a href='/'>Home</a> </li>
+    <li><a href='/login'>Login</a></li>
+    <li><a href='/signup'>Signup</a></li>
 
-{/* require Login token to access*/ }
-{sessionStorage.getItem('authToken') &&<>
-<li><a href='/profile'>Profile</a></li>
-<li><a href='/boxes'>Order</a></li>
-<li><a href='/orders'> History</a></li>
-<button id='navlogout' onClick={logout}>Logout </button>
+    {/* require Login token to access*/ }
+    {sessionStorage.getItem('authToken') &&<>
+    <li><a href='/profile'>Profile</a></li>
+    </>
+    }
 
-</>
-}
+    {sessionStorage.getItem('authToken') && idRef.current === 1 &&<>
+      <li><a href='/boxes'>Available Boxes</a></li>
+      <li><a href='/orders'> Order History</a></li>
+    </>
+    }
 
-    {/* for restaurant only */}
+  
 
-   {sessionStorage.getItem('authToken')&& id ===2 && /* get the role id if its 2 this will display &&*/ 
+   {sessionStorage.getItem('authToken')&& idRef.current ===2 && /* get the role id if its 2 this will display &&*/ 
    <><li><a href='/offers'>Offers</a></li>
     <li><a href='/createoffer'>Add Box </a></li>
     </>}
+
+    {sessionStorage.getItem('authToken') &&<>
+      <button id='navlogout' onClick={logout}>Logout </button>
+    </>
+    }
     </ul>
   )
 }

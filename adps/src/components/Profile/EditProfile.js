@@ -3,6 +3,7 @@ import { useHttpClient } from '../../httpClient/HttpClientContext';
 
 function EditProfile(name, phone, country,tags) {
   const httpClient = useHttpClient();
+  
   const saveChanges = (e) => {
     e.preventDefault();
     const clientData = {
@@ -14,7 +15,7 @@ function EditProfile(name, phone, country,tags) {
       tags: tags
     };
     const c_id = httpClient.get("/me").id;
-    const result =  httpClient.put("/client/signup", c_id, clientData);
+    httpClient.put("/client/signup", c_id, clientData);
 
   }
 
