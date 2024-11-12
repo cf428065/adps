@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+#navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    list-style-type: none;
+    column-gap:3vh ;
+    height: 5.5vh;
+    font-size: 1.2rem;
+    background-color: #32bea6;
+}
+#navbar li a{
+    font-size: 1.2rem;
+    border:0px white solid ;
+
+}
+#navbar li a:hover{
+    zoom: 120%;
+    color: rgb(255, 255, 255);
+
+}
+#navlogout{
+    background-color: rgb(240, 50, 50);
+    color: white;
+}
