@@ -10,6 +10,7 @@
     list-style-type: none;
     column-gap:3vh ;
     height: 5.5vh;
+    margin-bottom: 0px;
     font-size: 1.2rem;
     background-color: #32bea6;
 }

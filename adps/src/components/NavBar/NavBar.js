@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { useState } from 'react';
 import './NavBar.css'
 import { useHttpClient } from '../../httpClient/HttpClientContext';
 function NavBar() {
@@ -6,6 +7,10 @@ function NavBar() {
   const httpClient = useHttpClient();
   const idRef = useRef(); // Using useRef to keep id mutable across renders
 
+  const [cookie, setCookie] = useState("");
+  setInterval(() => setCookie(/* call to the method */), 1000);
+
+ 
   useEffect(() => {
     if (sessionStorage.getItem('authToken')) {
         httpClient.get('/auth/me').then((reply) => {
@@ -17,13 +22,15 @@ function NavBar() {
   function logout(){
     sessionStorage.removeItem('authToken');
     idRef.current = 0;
+    window.location.href = '/home';
   }
   return (
     <ul id='navbar'>
     <li><a href='/'>Home</a> </li>
+    {sessionStorage.getItem('authToken') ==null &&<>
     <li><a href='/login'>Login</a></li>
     <li><a href='/signup'>Signup</a></li>
-
+</>}
     {/* require Login token to access*/ }
     {sessionStorage.getItem('authToken') &&<>
     <li><a href='/profile'>Profile</a></li>

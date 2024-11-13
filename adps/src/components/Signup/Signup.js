@@ -108,7 +108,7 @@ function Signup() {
           {role === "restaurant" && (
           <form id="restaurantForm" onSubmit={handleSubmitRestaurant}>
             <div className="inplabel-group">
-              <label  className="signup-label">name : </label>
+              <label  className="signup-label">name  </label>
               <input input className='formInput'
               
                 type="text"
@@ -117,7 +117,7 @@ function Signup() {
               />
             </div>
             <div  className="inplabel-group">
-              <label  className="signup-label">email : </label>
+              <label  className="signup-label">email  </label>
               <input input className='formInput'
               
                 type="text"
@@ -126,7 +126,7 @@ function Signup() {
               />
             </div>
             <div className="inplabel-group">
-              <label  className="signup-label">password : </label>
+              <label  className="signup-label">password  </label>
               <input  input className='formInput'
                 type="password"
                 value={restaurantPassword}
@@ -134,7 +134,7 @@ function Signup() {
               />
             </div>
             <div className="inplabel-group">
-              <label className="signup-label">phone : </label>
+              <label className="signup-label">phone  </label>
               <input  input className='formInput'
                 type="number"
                 value={restaurantPhone}
@@ -142,7 +142,7 @@ function Signup() {
               />
             </div>
             <div className="inplabel-group">
-              <label className="signup-label">address : </label>
+              <label className="signup-label">address  </label>
               <input  input className='formInput'
                 type="text"
                 value={restaurantAddress}
@@ -150,7 +150,7 @@ function Signup() {
               />
             </div>
             <div className="inplabel-group">
-              <label className="signup-label">information : </label>
+              <label className="signup-label">information  </label>
               <input  input className='formInput'
                 type="text"
                 value={restaurantInfo}
@@ -158,7 +158,7 @@ function Signup() {
               />
             </div>
             <div className="inplabel-group">
-              <label className="signup-label">food options : </label>
+              <label className="signup-label">food options  </label>
               <select 
               className="custom-select"
                 name="foodOptions"
@@ -182,7 +182,7 @@ function Signup() {
           {role === "client" && (
             <form id="clientForm" onSubmit={handleSubmitClient}>
               <div className="inplabel-group">
-                <label className="signup-label">name : </label>
+                <label className="signup-label">name  </label>
                 <input input className='formInput'
                   type="text"
                   value={clientName}
@@ -190,7 +190,7 @@ function Signup() {
                 />
               </div>
               <div  className="inplabel-group">
-                <label className="signup-label">email : </label>
+                <label className="signup-label">email  </label>
                 <input input className='formInput'
                   type="text"
                   value={clientEmail}
@@ -198,7 +198,7 @@ function Signup() {
                 />
               </div>
               <div className="inplabel-group">
-                <label className="signup-label">password : </label>
+                <label className="signup-label">password  </label>
                 <input input className='formInput'
                   type="password"
                   value={clientPassword}
@@ -206,7 +206,7 @@ function Signup() {
                 />
               </div>
               <div className="inplabel-group">
-                <label className="signup-label">phone : </label>
+                <label className="signup-label">phone  </label>
                 <input input className='formInput'
                   type="number"
                   value={clientPhone}
@@ -214,7 +214,7 @@ function Signup() {
                 />
               </div>
               <div className="inplabel-group"> 
-                <label className="signup-label">country : </label>
+                <label className="signup-label">country  </label>
                 <input input className='formInput'
                   type="text"
                   value={clientCountry}
@@ -223,7 +223,7 @@ function Signup() {
               </div>
               <input type="hidden" name="role" value="1" />
               <div className="inplabel-group">
-              <label className="signup-label">food options : </label>
+              <label className="signup-label">food options  </label>
                 <select 
                 className="custom-select"
                   name="preference"

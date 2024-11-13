@@ -21,10 +21,10 @@ function ListBoxes() {
 
   return (
     
-    <div>
+    <section class="articles">
     {boxes.length>0 && boxes.map(box=><Box {...box} key={box.id}/>)}
 
-    </div>
+    </section>
     
   )
 }
