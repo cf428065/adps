@@ -3,7 +3,7 @@ import { useHttpClient } from '../../httpClient/HttpClientContext';
 
 function EditProfile(name, phone, country,tags) {
   const httpClient = useHttpClient();
-  
+
   const saveChanges = (e) => {
     e.preventDefault();
     const clientData = {
@@ -26,7 +26,7 @@ function EditProfile(name, phone, country,tags) {
 <input type="text " value={country} />
 <input type="text " value={tags} />
 <button onclick={saveChanges}>Save</button>
-    </div>
+  </div>
     )
 }
 

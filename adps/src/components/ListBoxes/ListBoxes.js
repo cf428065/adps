@@ -14,26 +14,10 @@ function ListBoxes() {
     httpClient.get("/box").then(res => {
       console.log(res);
       setBoxes(res);});
-    // httpClient.get("/featured-box").then(res => {
-    //   setfeaturedBoxes(res);});
+    httpClient.get("/featured-box").then(res => {
+       setfeaturedBoxes(res);});
   },[httpClient]);
   
-
-  function createOrder(e){
-  e.preventDefault();
-  if (alert("you want to confirm the order")) {
-    const data = {
-      //TO-DO fill with correct values when page is finished
-      box_id: 0,
-      number_of_boxes: 0,
-      pickup_time: 0,
-      client_id: 0
-    }
-    const reservation = httpClient.post('/reservation', data);
-    
-  } 
-  
-}
 
   return (
     
@@ -41,25 +25,8 @@ function ListBoxes() {
     {boxes.length>0 && boxes.map(box=><Box {...box} key={box.id}/>)}
 
     </div>
-
+    
   )
 }
-
-/*
-"name": "string",
-  "tags": [
-    "string"
-  ],
-  "price": 0,
-  "box_image": {
-    "access": "public",
-    "path": "string",
-    "name": "string",
-    "type": "string",
-    "size": 0,
-    "mime": "string",
-    "meta": {}
-
-*/ 
 
 export default ListBoxes

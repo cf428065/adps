@@ -10,7 +10,7 @@ function CreateOffer() {
 
     const [name, setName] = useState("");
     const [boxType, setBoxType] = useState([]);  
-    const [picture, setPicture] = useState([]); 
+    const [picture, setPicture] = useState(null); 
     const [quantity, setQuantity] = useState("");
     const [price, setPrice] = useState("");
     const [id] = useState(httpClient.get("/auth/me").id); 
@@ -24,6 +24,7 @@ async function createOffer(e) {
       available_count: quantity,
       price: price
     };
+    const picture = new FormData();
     httpClient.post("/box", data);
 
 }
