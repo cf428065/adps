@@ -4,8 +4,7 @@ import { useHttpClient } from '../../httpClient/HttpClientContext';
 function EditProfile() {
   const httpClient = useHttpClient();
 
-  const [role, setRole] = useState(useHttpClient.get("/me").role_id);
-
+  const [role, setRole] = useState(0);
   const [restaurantName, setRestaurantName] = useState("");
   const [restaurantPhone, setRestaurantPhone] = useState("");
   const [restaurantAddress, setRestaurantAddress] = useState("");
@@ -23,18 +22,20 @@ function EditProfile() {
   useEffect(() => {
     const datastring = sessionStorage.getItem('data');
     const response = JSON.parse(datastring);
+    const role = httpClient.get("auth/me").role_id;
+    setRole(role);
+    
         
         setRestaurantName(response.name);
         setRestaurantPhone(response.phone);
         setRestaurantAddress(response.restaurantAddress);
         setRestaurantInfo(response.restaurantInfo);
 
-        setRole(response.role);
         setClientName(response.clientName);
         setClientPhone(response.clientPhone);
         setClientCountry(response.clientCountry);
         setClientFoodPreference(response.clientfoodPreference);
-  }, []);
+  }, [httpClient]);
 
   const saveChangesClient = (e) => {
     e.preventDefault();
