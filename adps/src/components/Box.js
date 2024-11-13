@@ -1,9 +1,20 @@
 import React from "react";
 import { useState } from "react";
 import { useHttpClient } from '../httpClient/HttpClientContext';
+import RestaurantModal from "./ListBoxes/RestaurantModal";
 import './ListBoxes/ListBoxes.css'
 function Box({ id, restaurant_id, name, tags, quantity, price, box_image }) {
   // Handle ordering logic, e.g., adding item to cart or making HTTP requests
+
+  const [selectedRestaurant, setSelectedRestaurant] = useState(null);
+  const handleRestaurantClick = (restaurant) => {
+    setSelectedRestaurant(restaurant);
+    console.log(restaurant)
+  };
+  const closeModal = () => {
+    setSelectedRestaurant(null);
+  };
+
 
   const httpClient = useHttpClient();
 
@@ -18,7 +29,7 @@ function Box({ id, restaurant_id, name, tags, quantity, price, box_image }) {
     }
     httpClient.post("/reservation", reservation);
   }
-/* quantity counter*/
+
 
 
 
@@ -27,6 +38,7 @@ function Box({ id, restaurant_id, name, tags, quantity, price, box_image }) {
    
 
   <article>
+    
     <div class="article-wrapper">
       <figure>
        
@@ -37,7 +49,10 @@ function Box({ id, restaurant_id, name, tags, quantity, price, box_image }) {
         <h2>{name}</h2>
         
         <div className="box-price">${price}</div>
-        <div className="box-quantity">{quantity}</div>
+        <a href="#" onClick={() => handleRestaurantClick(restaurant_id)}>
+              assda
+            </a>
+        <div className="box-quantity">quantity:  <input type="number" value  /> </div>
         <div className="box-tags">
           {tags && tags.length > 0 ? (
             tags.map((tag, index) => (
@@ -57,6 +72,7 @@ function Box({ id, restaurant_id, name, tags, quantity, price, box_image }) {
         </button>
       </div>
     </div>
+    <RestaurantModal restaurant={selectedRestaurant} onClose={closeModal} />
   </article>
 
 
