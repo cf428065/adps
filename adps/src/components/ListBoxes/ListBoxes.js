@@ -22,7 +22,9 @@ function ListBoxes() {
   return (
     
     <section class="articles">
-    {boxes.length>0 && boxes.map(box=><Box {...box} key={box.id}/>)}
+    {boxes.length>0 && boxes.map(box=><Box {...box} key={box.id} />
+    
+    )}
 
     </section>
     

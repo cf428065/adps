@@ -25,7 +25,6 @@ function App() {
             <Route index path="/" element={<Home />} />
             <Route  path="/login" element={<Login />} />
             <Route  path="/signup" element={<Signup />} />
-
             <Route  path="/boxes" element={<ListBoxes />} /> 
             <Route  path="/offers" element={<ListOffer />} />
             <Route  path="/order" element={<ListOrders />} />
