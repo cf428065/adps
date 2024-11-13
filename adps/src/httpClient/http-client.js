@@ -1,6 +1,4 @@
 // Author: Charlotte Fehlhauer
-import {useNavigate, navigate} from "react";
-import { redirect } from "react-router-dom";
 
 // HttpClient Implementation
 export class HttpClient {
@@ -72,6 +70,7 @@ export class HttpClient {
     const responseData = await this.result(response);
     window.location.href = '/boxes';
     sessionStorage.setItem('authToken', responseData.authToken);
+    sessionStorage.setItem('data', JSON.stringify(data));
     return responseData;
     
 }
@@ -103,7 +102,7 @@ export class HttpClient {
     const response = await fetch(`${this.baseURL}/${link}/${id}`, {
       method: 'POST',
       headers: { 
-        'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data',
         'Authorization': `Bearer ${authToken}`
       },
       body: JSON.stringify(data)

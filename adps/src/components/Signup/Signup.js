@@ -11,7 +11,6 @@ function Signup() {
   const [restaurantPhone, setRestaurantPhone] = useState("");
   const [restaurantEmail, setRestaurantEmail] = useState("");
   const [restaurantPassword, setRestaurantPassword] = useState("");
-  const [foodOptions, setRestarantOptions] = useState([]);
   const [restaurantAddress, setRestaurantAddress] = useState("");
   const [restaurantInfo, setRestaurantInfo] = useState("");
 
@@ -53,18 +52,18 @@ function Signup() {
     const restaurantData = {
       email: restaurantEmail,
       password: restaurantPassword,
-      client_info: {},
       role_id : 2,
       restaurant_info: {
         name: restaurantName,
         phone: restaurantPhone,
-        info: restaurantInfo,
+        information: restaurantInfo,
         adress: restaurantAddress,
-        work_time: { "Mn": "08:30-20:30", "Tu": "08:30-20:30", "We": "08:30-20:30", "Th": "08:30-20:30", "Fr": "08:30-22:00", "Sa": "09:00-22:00", "Su": "09:00-18:00" } 
+        work_time: { Mn: "08:30-20:30", Tu: "08:30-20:30", We: "08:30-20:30", Th: "08:30-20:30", Fr: "08:30-22:00", Sa: "09:00-22:00", Su: "09:00-18:00" } 
       }
-    };
-    httpClient.postAuth("/auth/signup", restaurantData);
-    //httpClient.postAuth("/Img", restaurantData); TODO
+
+   }
+    const result =  httpClient.postAuth("/auth/signup", restaurantData);
+    console.log(result);
 
     
   };
@@ -156,21 +155,6 @@ function Signup() {
                 value={restaurantInfo}
                 onChange={(e) => setRestaurantInfo(e.target.value)}
               />
-            </div>
-            <div className="inplabel-group">
-              <label className="signup-label">food options  </label>
-              <select 
-              className="custom-select"
-                name="foodOptions"
-                
-                value={foodOptions}
-                onChange={(e) => setRestarantOptions(e.target.value)}
-              >
-                <option>vegan</option>
-                <option>vegetarian</option>
-                <option>lactose intolerant</option>
-                <option>omnivore</option>
-              </select>
             </div>
             <input type="hidden" name="role" value="2" />
             <input type="submit" value="submit"  className="signup-submit" />

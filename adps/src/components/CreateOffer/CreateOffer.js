@@ -25,15 +25,16 @@ async function createOffer(e) {
       price: price
     };
     const picture = new FormData();
-    httpClient.post("/box", data);
-
+    picture.append("file", picture);
+    const img_id = await httpClient.post("/box", data).id;
+    httpClient.post("/box-image", img_id, picture);
 }
 
 
   return (
     <div>
       CreateOffer
-      <form onSubmit={createOffer} enctype="multipart/form-data">
+      <form onSubmit={createOffer} >
         <input type="hidden" value={id}  />
         <div className="form-group">
           <label> Box Name :</label>
