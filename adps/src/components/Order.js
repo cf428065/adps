@@ -1,14 +1,21 @@
 import React from 'react'
-//sprevious orders (reservation9)
-function Order({customerName,status,picture,pickuptime,quantity}) {
+//previous orders (reservation) for Client Order history
+function Order({id, name, status, type, picture, quantity, price}) {
+
+  function cancelOrder(){};
+    
 
   return (
+
     <div className="order">
         <img src={picture} alt="orderImage" />
-      <h2> {customerName} </h2>
-      <p> {pickuptime}</p>
+      <h2> {name} </h2>
+      <p> {type}</p>
+      <p> {quantity}</p>
       <p> {status}</p>
-        <p> {quantity}</p>
+      <p>{price}</p>
+      <button onClick={cancelOrder}>
+      </button>
     </div>
   )
 }

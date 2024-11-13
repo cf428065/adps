@@ -4,11 +4,14 @@ import { useHttpClient } from '../../httpClient/HttpClientContext';
 function NavBar() {
      // Context object
   const httpClient = useHttpClient();
-  const idRef = useRef(0); // Using useRef to keep id mutable across renders
+  const idRef = useRef(); // Using useRef to keep id mutable across renders
 
   useEffect(() => {
     if (sessionStorage.getItem('authToken')) {
-        idRef.current = httpClient.getAuth('/auth/me').id; // Update the idRef's current value
+        httpClient.get('/auth/me').then((reply) => {
+          idRef.current = reply.role_id;
+        }
+        );
       };}, [httpClient]);
 
   function logout(){

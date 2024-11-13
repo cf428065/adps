@@ -12,10 +12,11 @@ function ListBoxes() {
 
   useEffect (() => {
     httpClient.get("/box").then(res => {
+      console.log(res);
       setBoxes(res);});
-    httpClient.get("/featured-box").then(res => {
-      setfeaturedBoxes(res);});
-  },[]);
+    // httpClient.get("/featured-box").then(res => {
+    //   setfeaturedBoxes(res);});
+  },[httpClient]);
   
 
   function createOrder(e){

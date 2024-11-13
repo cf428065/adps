@@ -13,17 +13,16 @@ export class HttpClient {
   //GET-REQUESTS
   //Get Request, which require Authorization
   async get(link) {
-    // Retrieve the token from localStorage
-    const token = sessionStorage.getItem('token'); 
-  
+    // Retrieve the authToken from localStorage
+    const authToken = sessionStorage.getItem('authToken'); 
     const response = await fetch(`${this.baseURL}/${link}`, {
       method: 'GET',
       headers: { 
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${authToken}`
       },
     });
-  
-    return this.result(response);
+    const responseData = await this.result(response);
+    return responseData;
   }
 
   //Get Request, which don't require Authorization
@@ -31,7 +30,8 @@ export class HttpClient {
     const response = await fetch(`${this.baseURL}/${link}`, {
       method: 'GET',
     });
-    return this.result(response);
+    const responseData = await this.result(response);
+    return responseData;
   }
 
   //Get-Request containing a specific id but don't need Authentication
@@ -40,26 +40,28 @@ export class HttpClient {
       method: 'GET',
     });
     
-    return this.result(response);
+    const responseData = await this.result(response);
+    return responseData;
   }
 
   //Get-Request containing a specific id
   async getWithId(link, id) {
-    // Retrieve the token from localStorage
-    const token = sessionStorage.getItem('token'); 
+    // Retrieve the authToken from localStorage
+    const authToken = sessionStorage.getItem('authToken'); 
   
     const response = await fetch(`${this.baseURL}/${link}/${id}`, {
       method: 'GET',
       headers: { 
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${authToken}`
       },
     });
     
-    return this.result(response);
+        const responseData = await this.result(response);
+    return responseData;
   }
 
   //POST - Requests
-  //Post Sign-Up/Login Data and retreive token
+  //Post Sign-Up/Login Data and retreive authToken
   async postAuth(link, data) {
     const response = await fetch(`${this.baseURL}/${link}`, {
       method: 'POST',
@@ -73,71 +75,75 @@ export class HttpClient {
 }
   //POST - Request
   async post(link, data) {
-    // Retrieve the token from localStorage
-    const token = sessionStorage.getItem('token'); 
+    // Retrieve the authToken from localStorage
+    const authToken = sessionStorage.getItem('authToken'); 
   
     const response = await fetch(`${this.baseURL}/${link}`, {
       method: 'POST',
       headers: { 
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${authToken}`
          },
         body: JSON.stringify(data),
       },
     });
   
-    return this.result(response);
+        const responseData = await this.result(response);
+    return responseData;
   }
 
   //Post - Request with ID
   async postPicture(link, id, data) {
-    // Retrieve the token from localStorage
-    const token = sessionStorage.getItem('token'); 
+    // Retrieve the authToken from localStorage
+    const authToken = sessionStorage.getItem('authToken'); 
   
     const response = await fetch(`${this.baseURL}/${link}/${id}`, {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${authToken}`
       },
       body: JSON.stringify(data)
     });
     
-    return this.result(response);
+        const responseData = await this.result(response);
+    return responseData;
   }
   
   //Put - Request containing a specific id
   async put(link, id, data) {
-    // Retrieve the token from localStorage
-    const token = sessionStorage.getItem('token'); 
+    // Retrieve the authToken from localStorage
+    const authToken = sessionStorage.getItem('authToken'); 
   
     const response = await fetch(`${this.baseURL}/${link}/${id}`, {
       method: 'PUT',
       headers: { 
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${authToken}`
       },
       body: JSON.stringify(data)
     });
     
-    return this.result(response);
+        const responseData = await this.result(response);
+    return responseData;
   }
 
   //Put - Request containing a specific id
   async delete(link, id) {
-    // Retrieve the token from localStorage
-    const token = sessionStorage.getItem('token'); 
+    // Retrieve the authToken from localStorage
+    const authToken = sessionStorage.getItem('authToken'); 
   
     const response = await fetch(`${this.baseURL}/${link}/${id}`, {
       method: 'DELETE',
       headers: { 
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${authToken}`
       }
     });
     
-    return this.result(response);
+        const responseData = await this.result(response);
+    return responseData;
   }
 
   
@@ -145,8 +151,7 @@ export class HttpClient {
     async result(response) {
 
     if (response.ok) {
-      console.log(response)
-      return response.json();}
+      return await response.json();}
     const message = await response.json();
 
     const errorMsg = JSON.parse(message)?.message || response.statusText;

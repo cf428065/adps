@@ -1,7 +1,7 @@
 import React from "react";
 import { useHttpClient } from '../httpClient/HttpClientContext';
 
-//what restaurant creates
+//what restaurant creates, a box from restuarant point of view
 function Offer({ id, name, status, type, picture, quantity, price }) {
      // Function, to Change status to Picked-up
      const httpClient = useHttpClient();
@@ -13,7 +13,8 @@ function Offer({ id, name, status, type, picture, quantity, price }) {
       };
       httpClient.post('/reservation/pick-up', data)
      };
-     
+    
+  //status need to be visible
   return (
     <div className="offer">
       <img src={picture} alt="offerImage" />

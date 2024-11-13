@@ -1,4 +1,4 @@
-import React, { useState, useNavigate } from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import { useHttpClient } from '../../httpClient/HttpClientContext';
 
@@ -6,7 +6,6 @@ function Login() {
 
  //Context-object
  const httpClient = useHttpClient();
- const navigate = useNavigate();
   // Verwende useState, um den Zustand der Eingabewerte zu speichern
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,12 +14,11 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const clientData = {
-      email: email,
-      password: password
+      email: email.toLowerCase(),
+      password: password.toLowerCase()
     };
     console.log(clientData);
   httpClient.postAuth("/auth/login", clientData);
-  navigate('/boxes');
   };
 
 
@@ -38,6 +36,8 @@ function Login() {
                   type="text"
                   name="email"
                   value={email} 
+                  autocapitalize="none"
+                  autocomplete="off"
                   onChange={(e) => setEmail(e.target.value)} // Aktualisiere den Zustand
                 />
               </div>
@@ -48,6 +48,7 @@ function Login() {
                   type="password"
                   name="password"
                   value={password}
+                  autocapitalize="none"
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>

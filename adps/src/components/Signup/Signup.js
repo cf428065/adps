@@ -64,6 +64,7 @@ function Signup() {
       }
     };
     httpClient.postAuth("/auth/signup", restaurantData);
+    //httpClient.postAuth("/Img", restaurantData); TODO
 
     
   };
