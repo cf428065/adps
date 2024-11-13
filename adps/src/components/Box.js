@@ -1,6 +1,7 @@
 import React from "react";
+import { useState } from "react";
 import { useHttpClient } from '../httpClient/HttpClientContext';
-
+import './ListBoxes/ListBoxes.css'
 function Box({ id, restaurant_id, name, tags, quantity, price, box_image }) {
   // Handle ordering logic, e.g., adding item to cart or making HTTP requests
 
@@ -17,19 +18,26 @@ function Box({ id, restaurant_id, name, tags, quantity, price, box_image }) {
     }
     httpClient.post("/reservation", reservation);
   }
+/* quantity counter*/
+
+
+
 
   return (
-    <div className="box">
-      {/* Display the box image if available */}
-      {box_image && box_image.url && (
-        <img src={box_image.url} alt={name} className="box-image" />
-      )}
+   
 
-      <div className="box-content">
-        <h2 className="box-name">{name}</h2>
-        <p className="box-price">${price}</p>
-        <p className="box-quantity">Quantity: {quantity}</p> {/* add selector for quantity*/}
-        {/* Display tags if they are available */}
+  <article>
+    <div class="article-wrapper">
+      <figure>
+       
+      {box_image && box_image.url && ( <img src={box_image.url} alt="" />
+      )}
+      </figure>
+      <div class="article-body">
+        <h2>{name}</h2>
+        
+        <div className="box-price">${price}</div>
+        <div className="box-quantity">{quantity}</div>
         <div className="box-tags">
           {tags && tags.length > 0 ? (
             tags.map((tag, index) => (
@@ -41,12 +49,20 @@ function Box({ id, restaurant_id, name, tags, quantity, price, box_image }) {
             <span className="no-tags">No tags available</span>
           )}
         </div>
-        {/* Button should have different label depending on client or restaurant*/}
-        <button className="order-button" onClick={handleOrder}>
-          Order Now
+        <button href="#" class="read-more" onClick={handleOrder}>
+          Order
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
         </button>
       </div>
     </div>
+  </article>
+
+
+
+
+
   );
 }
 

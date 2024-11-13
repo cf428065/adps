@@ -68,9 +68,11 @@ export class HttpClient {
     }); 
 
     const responseData = await this.result(response);
+    window.location.href = '/boxes';
     sessionStorage.setItem('authToken', responseData.authToken);
     sessionStorage.setItem('data', JSON.stringify(data));
     return responseData;
+    
 }
   //POST - Request
   async post(link, data) {
