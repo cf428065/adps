@@ -5,7 +5,7 @@ import { useState,useEffect } from 'react'
 import { useHttpClient } from '../../httpClient/HttpClientContext';
 
 function ListOrders() {
-    const [orders,setOrders] = useState([{ name: 'Order 1',status:'reserved',picture:'',pickuptime:'thursday 16:00', quantity:3 ]);
+    const [orders,setOrders] = useState([{ name: 'Order 1',status:'reserved',picture:'',pickuptime:'thursday 16:00', quantity:3 }]);
     
 
   const httpClient = useHttpClient();

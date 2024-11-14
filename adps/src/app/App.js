@@ -10,6 +10,7 @@ import ListOffer from '../components/ListOffer/ListOffer';
 import ListOrders from '../components/ListOrders/ListOrders';
 import ListBoxes from '../components/ListBoxes/ListBoxes';
 import NavBar from '../components/NavBar/NavBar';
+import EditProfile from '../components/Profile/EditProfile';
 
 
 
@@ -28,6 +29,7 @@ function App() {
             <Route  path="/boxes" element={<ListBoxes />} /> 
             <Route  path="/offers" element={<ListOffer />} />
             <Route  path="/order" element={<ListOrders />} />
+            <Route  path="/profile" element={<EditProfile/>} />
             <Route  path="/createoffer" element={<CreateOffer />} />
             
         </Routes>
