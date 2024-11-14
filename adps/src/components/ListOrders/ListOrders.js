@@ -9,14 +9,13 @@ function ListOrders() {
     }, ]);
     
   const httpClient = useHttpClient();
-    useEffect (() => {
-        const c_id = httpClient.get(`auth/me`).then(res => {
-            return res.id;
-          });
-        httpClient.getWithParam('/reservation', 'client_id', c_id).then(res => {
-            setOrders(res);
-        });
-        },[]);
+
+  useEffect (() => {
+    httpClient.get(`auth/me`)
+      .then(res => {httpClient.getWithParam('/reservation', 'client_id', res.id)
+        .then(res => {setOrders(res);});});
+  },[httpClient]);
+  
   return (
     <div>ListOrders
 {orders.length>0 && orders.map(order=><Order {...order} key={order.id}>

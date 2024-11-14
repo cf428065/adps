@@ -22,8 +22,8 @@ function EditProfile() {
   useEffect(() => {
     const datastring = sessionStorage.getItem('data');
     const response = JSON.parse(datastring);
-    const rol = httpClient.get("auth/me").role_id;
-        setRole(rol);
+    httpClient.get("auth/me")
+      .then(res => {setRole(res.role_id)});        
         setRestaurantName(response.name);
         setRestaurantPhone(response.phone);
         setRestaurantAddress(response.restaurantAddress);

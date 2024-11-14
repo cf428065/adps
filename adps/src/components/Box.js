@@ -30,7 +30,7 @@ function Box({ id, restaurant_id, name, tags, quantity, price, box_image }) {
     
     const boxchange = {
       box_id: id,
-      number_of_boxes: quantity,
+      number_of_boxes: 1,
       operation: "remove"
     }
     httpClient.post("/box/edit-number", boxchange);
