@@ -23,7 +23,7 @@ function EditProfile() {
     const datastring = sessionStorage.getItem('me');
     const response = JSON.parse(datastring);
     setRole(response.role_id);
-   /* httpClient.get("auth/me")
+   httpClient.getWithId("/client", response.id)  
       .then(res => {setRole(response.role_id)
         setRestaurantName(res.name);
         setRestaurantPhone(res.phone);
@@ -36,7 +36,7 @@ function EditProfile() {
         setClientFoodPreference(res.clientfoodPreference);
         console.log(res)
       }
-    );  */      
+    );       
 
 
   }, [httpClient]);

@@ -58,7 +58,7 @@ function Box({ id, restaurant_id, name, tags, quantity, price, box_image }) {
         
         <div className="box-price">${price}</div>
         <a href="#" onClick={() => handleRestaurantClick(restaurant_id)}>
-            rgserg
+            See Restaurant Details
             </a>
         <div className="box-tags">
           {tags && tags.length > 0 ? (

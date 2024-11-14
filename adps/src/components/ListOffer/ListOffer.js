@@ -5,7 +5,8 @@ import Offer from '../Offer'
 import { useHttpClient } from '../../httpClient/HttpClientContext';
 
 function ListOffer() {
-  const [offers,setOffers] = useState([]);
+  const [offers,setOffers] = useState([{ name: 'Order 1',status:'reserved',picture:'',pickuptime:'thursday 16:00', quantity:3 
+  }]);
 
     //Context-object
     const httpClient = useHttpClient();

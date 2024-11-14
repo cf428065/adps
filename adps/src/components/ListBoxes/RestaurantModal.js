@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './ListBoxes.css'
 import { useHttpClient } from '../../httpClient/HttpClientContext'
 
@@ -10,13 +10,20 @@ const [restaurantName, setRestaurantName] = useState("");
 const [restaurantPhone, setRestaurantPhone] = useState("");
 const [restaurantAddress, setRestaurantAddress] = useState("");
 const [restaurantInfo, setRestaurantInfo] = useState("");
-      /*
-async function getRestaurantById(restaurant) {
-      const restaurantData = await httpClient.getWithId("restaurant", restaurant);
-      console.log(restaurantData)
-      return restaurantData;
+      
+  
+useEffect(() => {
+  httpClient.getWithId("restaurant", restaurant)
+  .then(res => {
+    setRestaurantName(res.name);
+    setRestaurantPhone(res.phone);
+    setRestaurantAddress(res.restaurantAddress);
+    setRestaurantInfo(res.restaurantInfo);
+  }) ;}, [httpClient]);
+
+
    
-  }*/
+  
 
  //function getRestaurantById(id) {
  //  const response = httpClient.getWithId("/restaurant", id);
@@ -39,10 +46,10 @@ async function getRestaurantById(restaurant) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose} style={{color:'red'}}>X</button>
-        <h2>{restaurantInfo.name}asf</h2>
-        <p>{restaurantInfo.description}asf</p>
-        <p>Address: {restaurantInfo.address}</p>
-        <p>Working Hours: {restaurant.rating}</p>
+        <h2>{restaurantName}asf</h2>
+        <p>{restaurantInfo}asf</p>
+        <p>Address: {restaurantAddress}</p>
+        <p>phone: {restaurantPhone}</p>
         
       </div>
     </div>
