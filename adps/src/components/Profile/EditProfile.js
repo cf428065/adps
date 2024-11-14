@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHttpClient } from '../../httpClient/HttpClientContext';
-
+import './EditProfile.css'
 function EditProfile() {
   const httpClient = useHttpClient();
 
@@ -24,8 +24,6 @@ function EditProfile() {
     const response = JSON.parse(datastring);
     const rol = httpClient.get("auth/me").role_id;
         setRole(rol);
-    
-        
         setRestaurantName(response.name);
         setRestaurantPhone(response.phone);
         setRestaurantAddress(response.restaurantAddress);
@@ -64,7 +62,7 @@ function EditProfile() {
 
   return (
 /*--default page (no form)--*/
-<div id="signupDefault">
+
 <div className="dialoug">
   <div id="formSection">
     {/* Restaurant Form */}
@@ -155,7 +153,7 @@ function EditProfile() {
     )}
   </div>
 </div>
-</div>
+
   )
 }
 
