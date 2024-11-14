@@ -1,19 +1,16 @@
-import React, { useEffect } from "react";
-import { useState, useRef } from "react";
+import React from "react";
+import { useState } from "react";
 import { useHttpClient } from '../httpClient/HttpClientContext';
 import RestaurantModal from "./ListBoxes/RestaurantModal";
 import './ListBoxes/ListBoxes.css'
 function Box({ id, restaurant_id, name, tags, quantity, price, box_image }) {
+  // Handle ordering logic, e.g., adding item to cart or making HTTP requests
 
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
-
   const handleRestaurantClick = (restaurant) => {
-    httpClient.getWithId("restaurant", restaurant)
-  .then(res => {
-    console.log(res);
-    setSelectedRestaurant(res);
-  });};
-
+    setSelectedRestaurant(restaurant);
+    console.log(restaurant)
+  };
   const closeModal = () => {
     setSelectedRestaurant(null);
   };
@@ -21,26 +18,16 @@ function Box({ id, restaurant_id, name, tags, quantity, price, box_image }) {
 
   const httpClient = useHttpClient();
 
-
-
-  async function handleOrder() {
+  function handleOrder() {
     console.log(`Order placed for item ID: ${id} from restaurant ID: ${restaurant_id}`);
-    const c_id = sessionStorage.getItem('me');
+    const c_id = httpClient.get("/auth/me").id;
     const reservation = {
       box_id: id,
-      number_of_boxes: 1,
+      number_of_boxes: quantity,
       pickup_time: "2024-01-15T12:30:45+02:00",
-      client_id: c_id.id
+      client_id: c_id
     }
     httpClient.post("/reservation", reservation);
-    
-    const boxchange = {
-      box_id: id,
-      number_of_boxes: 1,
-      operation: "remove"
-    }
-    httpClient.post("/box/edit-number", boxchange);
-    window.location.href = '/orders';
   }
 
 
@@ -63,8 +50,9 @@ function Box({ id, restaurant_id, name, tags, quantity, price, box_image }) {
         
         <div className="box-price">${price}</div>
         <a href="#" onClick={() => handleRestaurantClick(restaurant_id)}>
-            See Restaurant Details
+              See Restaurant Details
             </a>
+        <div className="box-quantity">quantity:  <input type="number" value  /> </div>
         <div className="box-tags">
           {tags && tags.length > 0 ? (
             tags.map((tag, index) => (
