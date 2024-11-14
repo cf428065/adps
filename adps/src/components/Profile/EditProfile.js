@@ -23,23 +23,25 @@ function EditProfile() {
     const datastring = sessionStorage.getItem('me');
     const response = JSON.parse(datastring);
     setRole(response.role_id);
-   httpClient.getWithId("/client", response.id)  
-      .then(res => {setRole(response.role_id)
-        setRestaurantName(res.name);
-        setRestaurantPhone(res.phone);
-        setRestaurantAddress(res.restaurantAddress);
-        setRestaurantInfo(res.restaurantInfo);
+    if(role === 1) {
+      httpClient.getWithId("/client", response.id)  
+      .then(res => {
 
         setClientName(res.clientName);
         setClientPhone(res.clientPhone);
         setClientCountry(res.clientCountry);
-        setClientFoodPreference(res.clientfoodPreference);
-        console.log(res)
-      }
-    );       
+        setClientFoodPreference(res.clientfoodPreference);});
+    }
+    else if(role === 2) {
+      httpClient.getWithId("/client", response.id)  
+      .then(res => {
 
-
-  }, [httpClient]);
+        setRestaurantName(res.name);
+        setRestaurantPhone(res.phone);
+        setRestaurantAddress(res.restaurantAddress);
+        setRestaurantInfo(res.restaurantInfo);
+    }); 
+  }}, [httpClient]);
 
   const saveChangesClient = (e) => {
     e.preventDefault();

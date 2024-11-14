@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import './ListBoxes.css'
 import { useHttpClient } from '../../httpClient/HttpClientContext'
 
-function RestaurantModal({ restaurant, onClose }) {
+function RestaurantModal({ res, onClose }) {
 /*get restaurant info by id === restaurant  and store it in info*/
 const httpClient = useHttpClient();
 
@@ -12,14 +12,13 @@ const [restaurantAddress, setRestaurantAddress] = useState("");
 const [restaurantInfo, setRestaurantInfo] = useState("");
       
   
-useEffect(() => {
-  httpClient.getWithId("restaurant", restaurant)
-  .then(res => {
-    setRestaurantName(res.name);
-    setRestaurantPhone(res.phone);
-    setRestaurantAddress(res.restaurantAddress);
-    setRestaurantInfo(res.restaurantInfo);
-  }) ;}, [httpClient]);
+function openModal(){
+  setRestaurantName(res.name);
+  setRestaurantPhone(res.phone);
+  setRestaurantAddress(res.restaurantAddress);
+  setRestaurantInfo(res.restaurantInfo);
+}
+
 
 
    
@@ -40,14 +39,14 @@ useEffect(() => {
 
 
 
-  if (!restaurant) return null;
+  if (!res) return null;
 
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose} style={{color:'red'}}>X</button>
-        <h2>{restaurantName}asf</h2>
-        <p>{restaurantInfo}asf</p>
+        <h2>{restaurantName}</h2>
+        <p>{restaurantInfo}</p>
         <p>Address: {restaurantAddress}</p>
         <p>phone: {restaurantPhone}</p>
         

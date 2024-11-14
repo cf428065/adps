@@ -12,9 +12,8 @@ function ListOrders() {
   useEffect (() => {
     const me = JSON.parse(sessionStorage.getItem('me'));
     httpClient.getWithParam('/reservation', 'client_id', me.id)
-    /*httpClient.get(`auth/me`)
       .then(res => {httpClient.getWithParam('/reservation', 'client_id', res.id)
-        .then(res => {setOrders(res);});});*/
+        .then(res => {setOrders(res);});});
   },[httpClient]);
 
   return (

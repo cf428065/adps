@@ -10,14 +10,12 @@ function ListOffer() {
 
     //Context-object
     const httpClient = useHttpClient();
-    const [id, setid] = useState();
 
-  useEffect (() => {
-    const me = JSON.parse(sessionStorage.getItem('me'));
-    setid(me.id);
-    httpClient.getWithParam('/reservation', 'restaurant_id', id)
+    useEffect (() => {
+      const me = JSON.parse(sessionStorage.getItem('me'));
+      httpClient.getWithParam('/box', 'restaurant_id', me.id)
           .then(res => {setOffers(res);});
-  },[httpClient]);
+    },[httpClient]);
 
 
   return (

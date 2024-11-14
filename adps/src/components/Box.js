@@ -6,13 +6,18 @@ import './ListBoxes/ListBoxes.css'
 function Box({ id, restaurant_id, name, tags, quantity, price, box_image }) {
 
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
+
   const handleRestaurantClick = (restaurant) => {
-    setSelectedRestaurant(restaurant);
-    console.log(restaurant)
-  };
+    httpClient.getWithId("restaurant", restaurant)
+  .then(res => {
+    console.log(res);
+    setSelectedRestaurant(res);
+  });};
+
   const closeModal = () => {
     setSelectedRestaurant(null);
   };
+
 
   const httpClient = useHttpClient();
 

@@ -39,7 +39,7 @@ function NavBar() {
 
     {sessionStorage.getItem('authToken') && idRef.current === 1 &&<>
       <li><a href='/boxes'>Available Boxes</a></li>
-      <li><a href='/orders'> Order History</a></li>
+      <li><a href='/order'> Order History</a></li>
     </>
     }
 
