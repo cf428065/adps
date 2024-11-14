@@ -31,15 +31,11 @@ function NavBar() {
     <li><a href='/login'>Login</a></li>
     <li><a href='/signup'>Signup</a></li>
 </>}
-    {/* require Login token to access*/ }
-    {sessionStorage.getItem('authToken') &&<>
-    <li><a href='/profile'>Profile</a></li>
-    </>
-    }
+    
 
     {sessionStorage.getItem('authToken') && idRef.current === 1 &&<>
       <li><a href='/boxes'>Available Boxes</a></li>
-      <li><a href='/orders'> Order History</a></li>
+      <li><a href='/order'> Order History</a></li>
     </>
     }
 

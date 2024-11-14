@@ -84,7 +84,7 @@ export class HttpClient {
     }); 
 
     const responseData = await this.result(response);
-    window.location.href = '/home';
+    window.location.href = '/';
     sessionStorage.setItem('authToken', responseData.authToken);
     sessionStorage.setItem('data', JSON.stringify(data));
     return responseData;

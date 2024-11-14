@@ -28,7 +28,6 @@ function EditProfile() {
         setRestaurantPhone(response.phone);
         setRestaurantAddress(response.restaurantAddress);
         setRestaurantInfo(response.restaurantInfo);
-
         setClientName(response.clientName);
         setClientPhone(response.clientPhone);
         setClientCountry(response.clientCountry);

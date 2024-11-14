@@ -1,0 +1,36 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#ordersList{
+    display: flex;
+    flex-direction: row;
+    padding-top: 2vh;
+    padding-left: 2vw;
+    row-gap: 5vh;
+    column-gap: 4vh;
+    
+}
+.order{
+    border-radius: 20px;
+    background-color: rgb(0, 255, 140);
+    width: 23vw;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#cancelOrder{
+background-color: rgb(235, 81, 81);
+height: 6vh;
+width: 8vw;
+border-radius: 10px;
+color: white;
+border: 2px white solid;
+}
+
+#cancelOrder:hover{
+    background-color: black;
+    color: white ;
+}

@@ -1,10 +1,11 @@
 import React from 'react'
+import './ListOrders/ListOrders.css'
 //previous orders (reservation) for Client Order history
+
 function Order({id, name, status, type, picture, quantity, price}) {
 
   function cancelOrder(){};
     
-
   return (
 
     <div className="order">
@@ -14,7 +15,7 @@ function Order({id, name, status, type, picture, quantity, price}) {
       <p> {quantity}</p>
       <p> {status}</p>
       <p>{price}</p>
-      <button onClick={cancelOrder}>
+      <button  id='cancelOrder' onClick={cancelOrder}>Cancel
       </button>
     </div>
   )
