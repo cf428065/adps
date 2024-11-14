@@ -22,7 +22,7 @@ function NavBar() {
   function logout(){
     sessionStorage.removeItem('authToken');
     idRef.current = 0;
-    window.location.href = '/home';
+    window.location.href = '/';
   }
   return (
     <ul id='navbar'>
@@ -31,11 +31,7 @@ function NavBar() {
     <li><a href='/login'>Login</a></li>
     <li><a href='/signup'>Signup</a></li>
 </>}
-    {/* require Login token to access*/ }
-    {sessionStorage.getItem('authToken') &&<>
-    <li><a href='/profile'>Profile</a></li>
-    </>
-    }
+    
 
     {sessionStorage.getItem('authToken') && idRef.current === 1 &&<>
       <li><a href='/boxes'>Available Boxes</a></li>
