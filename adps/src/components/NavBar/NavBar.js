@@ -22,7 +22,7 @@ function NavBar() {
   function logout(){
     sessionStorage.removeItem('authToken');
     idRef.current = 0;
-    window.location.href = '/home';
+    window.location.href = '/';
   }
   return (
     <ul id='navbar'>
