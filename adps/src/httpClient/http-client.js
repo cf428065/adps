@@ -58,6 +58,22 @@ export class HttpClient {
     return responseData;
   }
 
+    //Get-Request containing a specific id
+    async getWithParam(link, idname, id) {
+      // Retrieve the authToken from localStorage
+      const authToken = sessionStorage.getItem('authToken'); 
+    
+      const response = await fetch(`${this.baseURL}/${link}?${idname}=${id}`, {
+        method: 'GET',
+        headers: { 
+          'Authorization': `Bearer ${authToken}`
+        },
+      });
+      
+          const responseData = await this.result(response);
+      return responseData;
+    }
+
   //POST - Requests
   //Post Sign-Up/Login Data and retreive authToken
   async postAuth(link, data) {

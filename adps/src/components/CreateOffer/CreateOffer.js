@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHttpClient } from '../../httpClient/HttpClientContext';
 
 import "./CreateOffer.css";
@@ -13,8 +13,12 @@ function CreateOffer() {
     const [picture, setPicture] = useState(null); 
     const [quantity, setQuantity] = useState("");
     const [price, setPrice] = useState("");
-    const [id] = useState(httpClient.get("/auth/me").id); 
-  
+    const [id, setId] = useState("");
+    
+    useEffect(() => {
+        setId(httpClient.get("/auth/me").id);
+    }, [httpClient]);
+
 async function createOffer(e) {
     e.preventDefault();
     const data = {

@@ -8,14 +8,11 @@ function ListBoxes() {
   
   const httpClient = useHttpClient();
   const [boxes,setBoxes] = useState([]);
-  const [featuredBoxes,setfeaturedBoxes] = useState([]);
 
   useEffect (() => {
     httpClient.get("/box").then(res => {
       console.log(res);
       setBoxes(res);});
-    httpClient.get("/featured-box").then(res => {
-       setfeaturedBoxes(res);});
   },[httpClient]);
   
 
