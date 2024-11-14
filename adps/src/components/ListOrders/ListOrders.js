@@ -5,18 +5,18 @@ import { useState,useEffect } from 'react'
 import { useHttpClient } from '../../httpClient/HttpClientContext';
 
 function ListOrders() {
-    const [orders,setOrders] = useState([{ name: 'Order 1',status:'reserved',picture:'',pickuptime:'thursday 16:00', quantity:3 
-    },{ name: 'Order 2',status:'reserved',picture:'',pickuptime:'thursday 16:00', quantity:3 
-    } ]);
+    const [orders,setOrders] = useState([{ name: 'Order 1',status:'reserved',picture:'',pickuptime:'thursday 16:00', quantity:3 ]);
     
+
   const httpClient = useHttpClient();
 
   useEffect (() => {
-    httpClient.get(`auth/me`)
+    const me = JSON.parse(sessionStorage.getItem('me'));
+    httpClient.getWithParam('/reservation', 'client_id', me.id)
       .then(res => {httpClient.getWithParam('/reservation', 'client_id', res.id)
         .then(res => {setOrders(res);});});
   },[httpClient]);
-  
+
   return (
     <div id='ordersList'>
 {orders.length>0 && orders.map(order=><Order {...order} key={order.name} /> 

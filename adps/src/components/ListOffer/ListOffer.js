@@ -5,20 +5,19 @@ import Offer from '../Offer'
 import { useHttpClient } from '../../httpClient/HttpClientContext';
 
 function ListOffer() {
-  const [offers,setOffers] = useState([{}]);
+
+  const [offers,setOffers] = useState([{ name: 'Order 1',status:'reserved',picture:'',pickuptime:'thursday 16:00', quantity:3 
+  }]);
+
 
     //Context-object
     const httpClient = useHttpClient();
-    const [id, setid] = useState();
 
-  useEffect (() => {
-    httpClient.get(`auth/me`)
-      .then(res => {setid(res.id); })
-      .then(res => {
-        httpClient.getWithParam('/reservation', 'restaurant_id', id)
-          .then(res => {setOffers(res);});});
-    
-  },[httpClient]);
+    useEffect (() => {
+      const me = JSON.parse(sessionStorage.getItem('me'));
+      httpClient.getWithParam('/box', 'restaurant_id', me.id)
+          .then(res => {setOffers(res);});
+    },[httpClient]);
 
 
   return (

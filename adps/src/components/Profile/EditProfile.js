@@ -13,26 +13,37 @@ function EditProfile() {
   /* Restaurant form end */
 
   /* Client form */
-  const [clientName, setClientName] = useState("");
+  const [clientName, setClientName] = useState("aa");
   const [clientPhone, setClientPhone] = useState("");
   const [clientCountry, setClientCountry] = useState("");
   const [clientfoodPreference, setClientFoodPreference] = useState([]);
   /*Client Form end */
 
   useEffect(() => {
-    const datastring = sessionStorage.getItem('data');
+    const datastring = sessionStorage.getItem('me');
     const response = JSON.parse(datastring);
-    httpClient.get("auth/me")
-      .then(res => {setRole(res.role_id)});        
-        setRestaurantName(response.name);
-        setRestaurantPhone(response.phone);
-        setRestaurantAddress(response.restaurantAddress);
-        setRestaurantInfo(response.restaurantInfo);
-        setClientName(response.clientName);
-        setClientPhone(response.clientPhone);
-        setClientCountry(response.clientCountry);
-        setClientFoodPreference(response.clientfoodPreference);
-  }, [httpClient]);
+
+    setRole(response.role_id);
+    if(role === 1) {
+      httpClient.getWithId("/client", response.id)  
+      .then(res => {
+
+        setClientName(res.clientName);
+        setClientPhone(res.clientPhone);
+        setClientCountry(res.clientCountry);
+        setClientFoodPreference(res.clientfoodPreference);});
+    }
+    else if(role === 2) {
+      httpClient.getWithId("/client", response.id)  
+      .then(res => {
+
+        setRestaurantName(res.name);
+        setRestaurantPhone(res.phone);
+        setRestaurantAddress(res.restaurantAddress);
+        setRestaurantInfo(res.restaurantInfo);
+    }); 
+  }}, [httpClient]);
+
 
   const saveChangesClient = (e) => {
     e.preventDefault();
