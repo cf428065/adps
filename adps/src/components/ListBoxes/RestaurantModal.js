@@ -18,21 +18,17 @@ async function getRestaurantById(restaurant) {
    
   }*/
 
-  function getRestaurantById(id) {
-    const response = httpClient.getWithId("/restaurant", id);
-        
-        setRestaurantName(response.name);
-        setRestaurantPhone(response.phone);
-        setRestaurantAddress(response.restaurantAddress);
-        setRestaurantInfo(response.restaurantInfo);
-      const restaurantData = 
-      console.log(restaurantData)
-      return restaurantData;
-
-
-
-   
-  }
+ //function getRestaurantById(id) {
+ //  const response = httpClient.getWithId("/restaurant", id);
+ //      
+ //      setRestaurantName(response.name);
+ //      setRestaurantPhone(response.phone);
+ //      setRestaurantAddress(response.restaurantAddress);
+ //      setRestaurantInfo(response.restaurantInfo);
+ //    const restaurantData = 
+ //    console.log(restaurantData)
+ //    return restaurantData;
+//}
 
 
 

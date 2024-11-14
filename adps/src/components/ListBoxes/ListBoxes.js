@@ -5,16 +5,13 @@ import Box from '../Box';
 import { useHttpClient } from '../../httpClient/HttpClientContext'
 
 function ListBoxes() { 
-  
   const httpClient = useHttpClient();
-  const [boxes,setBoxes] = useState([]);
+  const [boxes, setBoxes] = useState([]);
 
   useEffect (() => {
     httpClient.get("/box").then(res => {
-      console.log(res);
       setBoxes(res);});
   },[httpClient]);
-  
 
   return (
     

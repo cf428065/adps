@@ -1,5 +1,5 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect } from "react";
+import { useState, useRef } from "react";
 import { useHttpClient } from '../httpClient/HttpClientContext';
 import RestaurantModal from "./ListBoxes/RestaurantModal";
 import './ListBoxes/ListBoxes.css'
@@ -14,12 +14,13 @@ function Box({ id, restaurant_id, name, tags, quantity, price, box_image }) {
     setSelectedRestaurant(null);
   };
 
-
   const httpClient = useHttpClient();
+
+
 
   async function handleOrder() {
     console.log(`Order placed for item ID: ${id} from restaurant ID: ${restaurant_id}`);
-    const c_id =await httpClient.get("/auth/me");
+    const c_id = sessionStorage.getItem('me');
     const reservation = {
       box_id: id,
       number_of_boxes: 1,
@@ -57,7 +58,7 @@ function Box({ id, restaurant_id, name, tags, quantity, price, box_image }) {
         
         <div className="box-price">${price}</div>
         <a href="#" onClick={() => handleRestaurantClick(restaurant_id)}>
-              assda
+            rgserg
             </a>
         <div className="box-tags">
           {tags && tags.length > 0 ? (

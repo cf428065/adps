@@ -12,12 +12,10 @@ function ListOffer() {
     const [id, setid] = useState();
 
   useEffect (() => {
-    httpClient.get(`auth/me`)
-      .then(res => {setid(res.id); })
-      .then(res => {
-        httpClient.getWithParam('/reservation', 'restaurant_id', id)
-          .then(res => {setOffers(res);});});
-    
+    const me = JSON.parse(sessionStorage.getItem('me'));
+    setid(me.id);
+    httpClient.getWithParam('/reservation', 'restaurant_id', id)
+          .then(res => {setOffers(res);});
   },[httpClient]);
 
 

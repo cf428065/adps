@@ -13,26 +13,32 @@ function EditProfile() {
   /* Restaurant form end */
 
   /* Client form */
-  const [clientName, setClientName] = useState("");
+  const [clientName, setClientName] = useState("aa");
   const [clientPhone, setClientPhone] = useState("");
   const [clientCountry, setClientCountry] = useState("");
   const [clientfoodPreference, setClientFoodPreference] = useState([]);
   /*Client Form end */
 
   useEffect(() => {
-    const datastring = sessionStorage.getItem('data');
+    const datastring = sessionStorage.getItem('me');
     const response = JSON.parse(datastring);
-    httpClient.get("auth/me")
-      .then(res => {setRole(res.role_id)});        
-        setRestaurantName(response.name);
-        setRestaurantPhone(response.phone);
-        setRestaurantAddress(response.restaurantAddress);
-        setRestaurantInfo(response.restaurantInfo);
+    setRole(response.role_id);
+   /* httpClient.get("auth/me")
+      .then(res => {setRole(response.role_id)
+        setRestaurantName(res.name);
+        setRestaurantPhone(res.phone);
+        setRestaurantAddress(res.restaurantAddress);
+        setRestaurantInfo(res.restaurantInfo);
 
-        setClientName(response.clientName);
-        setClientPhone(response.clientPhone);
-        setClientCountry(response.clientCountry);
-        setClientFoodPreference(response.clientfoodPreference);
+        setClientName(res.clientName);
+        setClientPhone(res.clientPhone);
+        setClientCountry(res.clientCountry);
+        setClientFoodPreference(res.clientfoodPreference);
+        console.log(res)
+      }
+    );  */      
+
+
   }, [httpClient]);
 
   const saveChangesClient = (e) => {
