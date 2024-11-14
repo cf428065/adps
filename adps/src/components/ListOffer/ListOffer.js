@@ -11,18 +11,13 @@ function ListOffer() {
     const httpClient = useHttpClient();
     const [id, setid] = useState();
 
-    async function getRestaurantId(){
-      const res = await httpClient.get("/auth/me");
-      console.log(res.id);
-      setid(res.id);
-      httpClient.getWithParam('/reservation', 'restaurant_id', id).then(res => {
-      setOffers(res);});
-    }
-
-
-
   useEffect (() => {
-getRestaurantId();
+    httpClient.get(`auth/me`)
+      .then(res => {setid(res.id); })
+      .then(res => {
+        httpClient.getWithParam('/reservation', 'restaurant_id', id)
+          .then(res => {setOffers(res);});});
+    
   },[httpClient]);
 
 
