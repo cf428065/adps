@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHttpClient } from '../../httpClient/HttpClientContext';
-
+import './EditProfile.css'
 function EditProfile() {
   const httpClient = useHttpClient();
 
@@ -22,6 +22,7 @@ function EditProfile() {
   useEffect(() => {
     const datastring = sessionStorage.getItem('me');
     const response = JSON.parse(datastring);
+
     setRole(response.role_id);
     if(role === 1) {
       httpClient.getWithId("/client", response.id)  
@@ -42,6 +43,7 @@ function EditProfile() {
         setRestaurantInfo(res.restaurantInfo);
     }); 
   }}, [httpClient]);
+
 
   const saveChangesClient = (e) => {
     e.preventDefault();
@@ -70,7 +72,7 @@ function EditProfile() {
 
   return (
 /*--default page (no form)--*/
-<div id="signupDefault">
+
 <div className="dialoug">
   <div id="formSection">
     {/* Restaurant Form */}
@@ -161,7 +163,7 @@ function EditProfile() {
     )}
   </div>
 </div>
-</div>
+
   )
 }
 
