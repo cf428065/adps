@@ -4,8 +4,7 @@ import { useHttpClient } from '../../httpClient/HttpClientContext';
 function EditProfile() {
   const httpClient = useHttpClient();
 
-  const [role, setRole] = useState(useHttpClient.get("/me").role_id);
-
+  const [role, setRole] = useState(0);
   const [restaurantName, setRestaurantName] = useState("");
   const [restaurantPhone, setRestaurantPhone] = useState("");
   const [restaurantAddress, setRestaurantAddress] = useState("");
@@ -23,18 +22,20 @@ function EditProfile() {
   useEffect(() => {
     const datastring = sessionStorage.getItem('data');
     const response = JSON.parse(datastring);
+    const rol = httpClient.get("auth/me").role_id;
+        setRole(rol);
+    
         
         setRestaurantName(response.name);
         setRestaurantPhone(response.phone);
         setRestaurantAddress(response.restaurantAddress);
         setRestaurantInfo(response.restaurantInfo);
 
-        setRole(response.role);
         setClientName(response.clientName);
         setClientPhone(response.clientPhone);
         setClientCountry(response.clientCountry);
         setClientFoodPreference(response.clientfoodPreference);
-  }, []);
+  }, [httpClient]);
 
   const saveChangesClient = (e) => {
     e.preventDefault();
@@ -65,12 +66,6 @@ function EditProfile() {
 /*--default page (no form)--*/
 <div id="signupDefault">
 <div className="dialoug">
-  <div id="welcomeSection">
-    <h1>Welcome to our site!</h1>
-    <p>
-      Already have an account? <a href="/login">Login</a>
-    </p>
-  </div>
   <div id="formSection">
     {/* Restaurant Form */}
     {role === 2 && (
@@ -108,7 +103,6 @@ function EditProfile() {
           onChange={(e) => setRestaurantInfo(e.target.value)}
         />
       </div>
-      <input type="hidden" name="role" value="2" />
       <input type="submit" value="submit"  className="signup-submit" />
     </form>
   )}
@@ -141,7 +135,6 @@ function EditProfile() {
             onChange={(e) => setClientCountry(e.target.value)}
           />
         </div>
-        <input type="hidden" name="role" value="1" />
         <div className="inplabel-group">
         <label className="signup-label">food options  </label>
           <select 

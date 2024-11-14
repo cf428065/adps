@@ -9,12 +9,21 @@ function ListOffer() {
 
     //Context-object
     const httpClient = useHttpClient();
+    const [id, setid] = useState();
+
+    async function getRestaurantId(){
+      const res = await httpClient.get("/auth/me");
+      console.log(res.id);
+      setid(res.id);
+      httpClient.getWithParam('/reservation', 'restaurant_id', id).then(res => {
+      setOffers(res);});
+    }
+
+
 
   useEffect (() => {
-    const r_id = httpClient.get(`/me`).id;
-    httpClient.getWithId('/reservation', 'restaurant_id', r_id).then(res => {
-        setOffers(res);});
-  },[]);
+getRestaurantId();
+  },[httpClient]);
 
 
   return (
